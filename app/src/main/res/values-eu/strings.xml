@@ -44,7 +44,7 @@
     <string name="progreso_label">📺 Aurrerakuntza</string>
     <string name="imagen">Irudia</string>
     <string name="seleccionar_imagen">📷 Irudia aukeratu</string>
-    <string name="titulo_obligatorio">Izenburua nahitaezkoa da</string>
+    <string name="titulo_obligatorio">Izenburua derrigorrezkoa da</string>
     <string name="notif_añadida">gehitu da</string>
     <string name="notif_mensaje">zure liburutegian dago jada 🎬</string>
 </resources>
