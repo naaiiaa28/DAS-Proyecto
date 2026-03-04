@@ -42,7 +42,13 @@ public class DetailActivity extends AppCompatActivity {
 
         setTitle(item.getTitulo());
         ((TextView) findViewById(R.id.tvDetalleTitulo)).setText(item.getTitulo());
-        ((TextView) findViewById(R.id.tvDetalleTipo)).setText(item.getTipo() + " • " + item.getGenero());
+        String tipoTraducido;
+        switch (item.getTipo() != null ? item.getTipo() : "") {
+            case "Película": tipoTraducido = getString(R.string.tipo_pelicula); break;
+            case "Serie":    tipoTraducido = getString(R.string.tipo_serie); break;
+            default:         tipoTraducido = item.getTipo(); break;
+        }
+        ((TextView) findViewById(R.id.tvDetalleTipo)).setText(tipoTraducido + " • " + item.getGenero());
         ((TextView) findViewById(R.id.tvDetallePuntuacion)).setText("⭐ " + (int) item.getPuntuacion() + "/5");
 
         TextView tvEstado = findViewById(R.id.tvDetalleEstado);

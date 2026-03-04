@@ -55,7 +55,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder h, int position) {
         MediaItem item = lista.get(position);
         h.tvTitulo.setText(item.getTitulo());
-        h.tvTipo.setText(item.getTipo() + " • " + item.getGenero());
+        h.tvTipo.setText(traducirTipo(h.itemView.getContext(), item.getTipo()) + " • " + item.getGenero());
         h.tvPuntuacion.setText("⭐ " + (int) item.getPuntuacion() + "/5");
 
         // Colores basados en valor en español (siempre así en BD)
@@ -96,5 +96,14 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
     public void actualizarLista(List<MediaItem> nuevaLista) {
         lista = nuevaLista;
         notifyDataSetChanged();
+    }
+
+    private String traducirTipo(Context context, String tipoES) {
+        if (tipoES == null) return "";
+        switch (tipoES) {
+            case "Película": return context.getString(R.string.tipo_pelicula);
+            case "Serie":    return context.getString(R.string.tipo_serie);
+            default:         return tipoES;
+        }
     }
 }

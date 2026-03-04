@@ -72,9 +72,11 @@
             android:text="ES"
             android:textColor="@color/blanco"
             android:textStyle="bold"
+            android:gravity="center"
             android:contentDescription="@string/cambiar_idioma"
             app:backgroundTint="@color/toolbar_color"
-            app:icon="@null"/>
+            app:icon="@null"
+            app:iconPadding="0dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
