@@ -15,13 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+//la primera pantalla que aparece al abrir la app. En un principio donde se muestran todas las pelis/series de la base de datos
     private RecyclerView recyclerView;
     private MediaAdapter adapter;
     private miBD db;
     private List<MediaItem> lista;
     private TextView tvVacio;
 
+    //lo primero que se ejecuta para establecer idioma
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LanguageHelper.aplicarIdioma(newBase));
@@ -34,45 +35,51 @@ public class MainActivity extends AppCompatActivity {
         // Forzar título de toolbar con string traducido
         com.google.android.material.appbar.MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.toolbar_principal));
+        // Conecta el botón de idioma y actualiza su texto (ES/EN/EU)
+        // según el idioma guardado en preferencias
         findViewById(R.id.btnIdioma).setOnClickListener(v -> mostrarDialogoIdioma());
         actualizarBotonIdioma();
 
-        db = new miBD(this);
+        db = new miBD(this); //conexiooon bd
         NotificationHelper.createChannel(this);
 
         tvVacio = findViewById(R.id.tvVacio);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        lista = db.obtenerTodos();
+        lista = db.obtenerTodos(); // Carga todos los items de la BD ordenados por fecha
         adapter = new MediaAdapter(lista, new MediaAdapter.OnItemClickListener() {
+            // Al pulsar la tarjeta de peli/serie abre DetailActivity pasándole el id del item
             @Override
             public void onClick(MediaItem item) {
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 intent.putExtra("id", item.getId());
                 startActivity(intent);
             }
+            // Al pulsar el botón editar abre AddEditActivity pa editar
             @Override
             public void onEdit(MediaItem item) {
                 Intent intent = new Intent(MainActivity.this, AddEditActivity.class);
                 intent.putExtra("item_id", item.getId());
                 startActivityForResult(intent, 100);
             }
+            // Al pulsar el botón eliminar muestra el diálogo de confirmación
             @Override
             public void onDelete(MediaItem item) {
                 mostrarDialogoEliminar(item);
             }
         });
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter); // Conecta el adapter al RecyclerView
 
-        findViewById(R.id.btnIdioma).setOnClickListener(v -> mostrarDialogoIdioma());
+        //boton del mas pa añadir una nueva peli/serie
         findViewById(R.id.fabAdd).setOnClickListener(v ->
             startActivityForResult(new Intent(this, AddEditActivity.class), 100));
 
-        configurarFiltros();
-        actualizarVista();
+        configurarFiltros(); //si quieres filtrar por un tipo de progreso
+        actualizarVista(); //actualiza las pelis que se ven en base al filtro o si hay o no pelis
     }
 
+    //uan vez aceptas borrar el item se borra de la bd y actualiza la lista y la vista
     private void mostrarDialogoEliminar(MediaItem item) {
         new AlertDialog.Builder(this)
             .setTitle(getString(R.string.eliminar_titulo))
@@ -89,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void configurarFiltros() {
         Spinner spinner = findViewById(R.id.spinnerFiltro);
+        // Las opciones se construyen con getString para que estén traducidas
         String[] opciones = {
             getString(R.string.filtro_todos),
             getString(R.string.estado_visto),
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> p, View v, int pos, long id) {
                 if (pos == 0) {
-                    lista = db.obtenerTodos();
+                    lista = db.obtenerTodos(); //como en la bd se guarda en orden jugamos con las posiciones
                 } else {
                     // Siempre filtramos por los valores originales en español que están en BD
                     String[] estadosDB = {"Visto", "En progreso", "Pendiente"};
@@ -115,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void actualizarVista() {
+        // Si la lista está vacía muestra el texto y oculta el RecyclerView
+        // Si tiene items oculta el texto y muestra el RecyclerView
         tvVacio.setVisibility(lista.isEmpty() ? View.VISIBLE : View.GONE);
         recyclerView.setVisibility(lista.isEmpty() ? View.GONE : View.VISIBLE);
     }
@@ -122,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
+        // recargamos la lista para reflejar los cambios de añadir o editar
         if (res == RESULT_OK) {
             lista = db.obtenerTodos();
             adapter.actualizarLista(lista);
@@ -134,11 +145,12 @@ public class MainActivity extends AppCompatActivity {
         String[] opciones = {"Español", "English", "Euskera"};
         int seleccionado;
         switch (idiomaActual) {
+            // Determina cuál opción aparece marcada según el idioma actual
             case "en": seleccionado = 1; break;
             case "eu": seleccionado = 2; break;
             default:   seleccionado = 0; break;
         }
-
+        // setSingleChoiceItems crea un diálogo con botones de radio solo se puede elegir uno no tiene sentido poder marcxar mas de un idioma
         new AlertDialog.Builder(this)
             .setTitle(getString(R.string.cambiar_idioma))
             .setSingleChoiceItems(opciones, seleccionado, (dialog, which) -> {
@@ -159,10 +171,12 @@ public class MainActivity extends AppCompatActivity {
 
     // Añade este método para actualizar el texto del botón
 private void actualizarBotonIdioma() {
+    // Obtiene la referencia al botón de idioma casteándolo a su tipo real
     com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton btnIdioma =
         findViewById(R.id.btnIdioma);
     String lang = LanguageHelper.getIdioma(this);
     switch (lang) {
+        // Actualiza el texto del botón para que muestre el código del idioma activo
         case "en": btnIdioma.setText("EN"); break;
         case "eu": btnIdioma.setText("EU"); break;
         default:   btnIdioma.setText("ES"); break;

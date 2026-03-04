@@ -25,7 +25,7 @@ import java.util.UUID;
 import android.content.Context;
 
 public class AddEditActivity extends AppCompatActivity {
-
+//actividad para cuando se quiere añadir una peli (pulsanbdo al mas pekeñito abajo) o cuando se edita una peli/serie ya existente
     private miBD db;  //base de datos
     private MediaItem itemEditar = null;  //para cuando se edita aqui se guarda su info y no perderla
     private EditText etTitulo; //para formulario

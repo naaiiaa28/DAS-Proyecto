@@ -11,11 +11,12 @@ import java.util.List;
 import android.content.Context;
 
 public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> {
+    //puente entre la lista de datos y el RecyclerView. Se encarga de crear las tarjetas visuales y rellenarlas con los datos
 
     private List<MediaItem> lista;
     private OnItemClickListener listener;
 
-    public interface OnItemClickListener {
+    public interface OnItemClickListener { //los botones que se pueden pulsar
         void onEdit(MediaItem item);
         void onDelete(MediaItem item);
         void onClick(MediaItem item);
@@ -26,7 +27,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
         this.listener = listener;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder { //
         TextView tvTitulo, tvTipo, tvEstado, tvPuntuacion, tvProgreso;
         CardView cardView;
         ImageButton btnEdit, btnDelete;
@@ -51,6 +52,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
         return new ViewHolder(v);
     }
 
+    //Se llama para cada tarjeta visible y es el que realmente rellena los datos en pantalla.
     @Override
     public void onBindViewHolder(ViewHolder h, int position) {
         MediaItem item = lista.get(position);
@@ -80,6 +82,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
         h.btnDelete.setOnClickListener(v -> listener.onDelete(item));
     }
 
+    //convierten los valores en español guardados en la BD al texto del idioma activo
     private String traducirEstado(Context context, String estadoES) {
         if (estadoES == null) return "";
         switch (estadoES) {

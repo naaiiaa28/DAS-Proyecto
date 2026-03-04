@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class miBD extends SQLiteOpenHelper {
-
+//base de datos, simple y sencillo
     private static final String DB_NAME = "biblioteca.db";
     private static final int DB_VERSION = 2;
     public static final String TABLE = "objetos";
+
+    // El texto SQL completo para crear la tabla con todas sus columnas se mete en una variable por tener toodo organizao
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -31,7 +33,8 @@ public class miBD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
-        //se mete todo el texto de la creacion en una variable 
+        //se mete todoo el texto de la creacion en una variable
+        // Ejecuta el SQL de creación de la tabla
     }
 
     @Override
@@ -44,12 +47,14 @@ public class miBD extends SQLiteOpenHelper {
         }
     }
 
+    //insertar en bd
     public long insertar(MediaItem item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = toContentValues(item);
         return db.insert(TABLE, null, cv);
     }
 
+    //update en bd
     public int actualizar(MediaItem item) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = toContentValues(item);
@@ -57,24 +62,25 @@ public class miBD extends SQLiteOpenHelper {
         //lo ultimo no es null porque necesito buscar el id
     }
 
+    //drop en bd
     public boolean eliminar(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE, "id=?", new String[]{String.valueOf(id)}) > 0;
         //lo ultimo no es null porque necesito buscar el id
     }
 
-    public List<MediaItem> obtenerTodos() {
+    public List<MediaItem> obtenerTodos() { //lista todos las pelis que hay
         List<MediaItem> lista = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(TABLE, null, null, null, null, null, "fecha_adicion DESC");
         if (c.moveToFirst()) {
             do { lista.add(cursorToItem(c)); } while (c.moveToNext());
         }
-        c.close();
+        c.close(); //cerrar pa la memoria
         return lista;
     }
 
-    public List<MediaItem> filtrarPorEstado(String estado) {
+    public List<MediaItem> filtrarPorEstado(String estado) { //lista por el filtrado
         List<MediaItem> lista = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(TABLE, null, "estado=?", new String[]{estado}, null, null, null);
@@ -85,7 +91,7 @@ public class miBD extends SQLiteOpenHelper {
         return lista;
     }
 
-    public MediaItem obtenerPorId(int id) {
+    public MediaItem obtenerPorId(int id) { //busca el objeto por el id
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.query(TABLE, null, "id=?", new String[]{String.valueOf(id)}, null, null, null);
         if (c.moveToFirst()) {

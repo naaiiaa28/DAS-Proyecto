@@ -11,10 +11,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class NotificationHelper {
+    //para trabajar con las notificacioones de la barra de arriba
 
     private static final String CHANNEL_ID = "biblioteca_channel";
     private static int notifId = 0;
 
+    //crea canal de notis
     public static void createChannel(Context ctx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -24,6 +26,7 @@ public class NotificationHelper {
         }
     }
 
+    //Construye y lanza la notificación que aparece en la barra del móvil cuando se añade un item
     public static void mostrarNotificacion(Context ctx, String titulo, String tipoES) {
         Intent intent = new Intent(ctx, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

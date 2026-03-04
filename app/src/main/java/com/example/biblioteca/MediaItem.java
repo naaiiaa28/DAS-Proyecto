@@ -1,6 +1,7 @@
 package com.example.biblioteca;
 
 public class MediaItem {
+    //las pelis/series que se van añadiendo son objetos con sus set y get (mitika clase de java)
     private int id;
     private String titulo;
     private String tipo;
