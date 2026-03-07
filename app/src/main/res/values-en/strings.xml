@@ -38,12 +38,12 @@
     <string name="estado_pendiente">Pending</string>
     <string name="filtro_todos">All</string>
     <string name="cambiar_idioma">Language</string>
-    <string name="toolbar_principal">🎬 MiPantalla</string>
-    <string name="resumen_label">📖 Summary</string>
-    <string name="comentario_label">💬 My comment</string>
-    <string name="progreso_label">📺 Progress</string>
+    <string name="toolbar_principal"> MiPantalla</string>
+    <string name="resumen_label"> Summary</string>
+    <string name="comentario_label"> My comment</string>
+    <string name="progreso_label"> Progress</string>
     <string name="imagen">Image</string>
-    <string name="seleccionar_imagen">📷 Select image</string>
+    <string name="seleccionar_imagen"> Select image</string>
     <string name="titulo_obligatorio">Title is required</string>
     <string name="notif_añadida">added</string>
     <string name="notif_mensaje">is now in your library 🎬</string>
