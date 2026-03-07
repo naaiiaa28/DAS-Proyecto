@@ -76,7 +76,11 @@
             android:contentDescription="@string/cambiar_idioma"
             app:backgroundTint="@color/toolbar_color"
             app:icon="@null"
-            app:iconPadding="0dp"/>
+            app:iconPadding="0dp"
+            app:elevation="0dp"
+            app:hoveredFocusedTranslationZ="0dp"
+            android:stateListAnimator="@null"
+            app:pressedTranslationZ="0dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
@@ -84,7 +88,9 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/añadir"
             android:src="@android:drawable/ic_input_add"
-            app:backgroundTint="@color/fab_color"/>
+            app:backgroundTint="@color/fab_color"
+            app:elevation="0dp"/>
+
 
     </LinearLayout>
 
