@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Nire Liburutegia</string>
+    <string name="app_name">MiPantalla</string>
     <string name="añadir">Gehitu</string>
     <string name="editar">Editatu</string>
     <string name="guardar">GORDE</string>
@@ -38,7 +38,7 @@
     <string name="estado_pendiente">Zain</string>
     <string name="filtro_todos">Denak</string>
     <string name="cambiar_idioma">Hizkuntza</string>
-    <string name="toolbar_principal">🎬 Nire Liburutegia</string>
+    <string name="toolbar_principal">🎬 MiPantalla</string>
     <string name="resumen_label">📖 Laburpena</string>
     <string name="comentario_label">💬 Nire iruzkina</string>
     <string name="progreso_label">📺 Aurrerakuntza</string>

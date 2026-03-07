@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mi Biblioteca</string>
+    <string name="app_name">MiPantalla</string>
     <string name="añadir">Añadir</string>
     <string name="editar">Editar</string>
     <string name="guardar">GUARDAR</string>
@@ -38,7 +38,7 @@
     <string name="estado_pendiente">Pendiente</string>
     <string name="filtro_todos">Todos</string>
     <string name="cambiar_idioma">Idioma</string>
-    <string name="toolbar_principal">🎬 Mi Biblioteca</string>
+    <string name="toolbar_principal">🎬 MiPantalla</string>
     <string name="resumen_label">📖 Resumen</string>
     <string name="comentario_label">💬 Mi comentario</string>
     <string name="progreso_label">📺 Progreso</string>

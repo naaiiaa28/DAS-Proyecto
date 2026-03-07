@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Library</string>
+    <string name="app_name">MiPantalla</string>
     <string name="añadir">Add</string>
     <string name="editar">Edit</string>
     <string name="guardar">SAVE</string>
@@ -38,7 +38,7 @@
     <string name="estado_pendiente">Pending</string>
     <string name="filtro_todos">All</string>
     <string name="cambiar_idioma">Language</string>
-    <string name="toolbar_principal">🎬 My Library</string>
+    <string name="toolbar_principal">🎬 MiPantalla</string>
     <string name="resumen_label">📖 Summary</string>
     <string name="comentario_label">💬 My comment</string>
     <string name="progreso_label">📺 Progress</string>
