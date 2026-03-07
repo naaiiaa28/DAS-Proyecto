@@ -17,14 +17,15 @@ public class miBD extends SQLiteOpenHelper {
     // El texto SQL completo para crear la tabla con todas sus columnas se mete en una variable por tener toodo organizao
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-            + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + "titulo TEXT NOT NULL, "
-            + "tipo TEXT, genero TEXT, puntuacion REAL, "
-            + "comentario TEXT, resumen TEXT, estado TEXT, "
-            + "temporadas_totales INTEGER DEFAULT 0, "
-            + "temporada_actual INTEGER DEFAULT 0, "
-            + "capitulo_actual INTEGER DEFAULT 0, "
-            + "fecha_adicion TEXT)";
+        + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "titulo TEXT NOT NULL, "
+        + "tipo TEXT, genero TEXT, puntuacion REAL, "
+        + "comentario TEXT, resumen TEXT, estado TEXT, "
+        + "temporadas_totales INTEGER DEFAULT 0, "
+        + "temporada_actual INTEGER DEFAULT 0, "
+        + "capitulo_actual INTEGER DEFAULT 0, "
+        + "fecha_adicion TEXT, "
+        + "ruta_imagen TEXT)";
 
     public miBD(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
