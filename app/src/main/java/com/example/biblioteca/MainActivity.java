@@ -182,4 +182,11 @@ private void actualizarBotonIdioma() {
         default:   btnIdioma.setText("ES"); break;
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lista = db.obtenerTodos();
+        adapter.actualizarLista(lista);
+        actualizarVista();
+    }
 }
